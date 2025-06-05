@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Lucknow Havelis - Tourist Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+  :root {
+    --primary-color: #6a1b9a;
+    --secondary-color: #9c27b0;
+    --background-color: #f5f4fa;
+    --text-color: #333;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(108, 0, 160, 0.15);
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.5;
+  }
+
+  header {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    padding: 1.8rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 12px var(--shadow-color);
+  }
+
+  header h1 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 2.4rem;
+    letter-spacing: 1px;
+  }
+
+  main {
+    max-width: 1100px;
+    margin: 2.5rem auto;
+    padding: 0 1rem 4rem 1rem;
+  }
+
+  .intro {
+    text-align: center;
+    font-size: 1.15rem;
+    color: #555;
+    margin-bottom: 3rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .havelis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+    gap: 2rem;
+  }
+
+  .haveli-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 8px 24px var(--shadow-color);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .haveli-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(108,0,160,0.35);
+  }
+
+  .haveli-image {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 16px 16px 0 0;
+    box-shadow: inset 0 0 12px rgba(0,0,0,0.06);
+  }
+
+  .haveli-content {
+    padding: 1rem 1.25rem 1.75rem 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .haveli-title {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    font-weight: 600;
+  }
+
+  .haveli-description {
+    margin-top: 0.6rem;
+    font-size: 0.95rem;
+    color: #444;
+    flex-grow: 1;
+    overflow-y: auto;
+    max-height: 120px;
+  }
+
+  .haveli-link {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.3s ease;
+  }
+
+  .haveli-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+
+  .map-link {
+    margin-top: 0.35rem;
+    font-weight: 500;
+    font-size: 0.9rem;
+    color: #444;
+    text-decoration: none;
+    align-self: flex-start;
+    transition: color 0.25s ease;
+  }
+
+  .map-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+  }
+
+  footer {
+    text-align: center;
+    color: #666;
+    font-size: 0.9rem;
+    padding: 2rem 1rem;
+    border-top: 1px solid #ddd;
+    max-width: 1100px;
+    margin: 0 auto 2rem auto;
+  }
+
+  /* Scrollbar for description if needed */
+  .haveli-description::-webkit-scrollbar {
+    width: 6px;
+  }
+  .haveli-description::-webkit-scrollbar-track {
+    background: #f5f5f5;
+    border-radius: 3px;
+  }
+  .haveli-description::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 3px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>Heritage Havens Lucknow</h1>
+</header>
+<main>
+  <p class="intro">
+    Discover the magnificent havelis and heritage landmarks of Lucknow. Explore detailed information and beautiful images for each famous haveli to plan your historic trip with ease.
+  </p>
+
+  <section class="havelis-grid" id="havelis-grid">
+    <!-- Haveli cards will be inserted here dynamically -->
+  </section>
+</main>
+<footer>
+  &copy; 2024 Lucknow Tourist Guide | Information sourced from Wikipedia and external image sources
+</footer>
+
+<script>
+  // Haveli data list: name, Wikipedia title, image URL, Google Maps link
+  const havelis = [
+    {
+      name: 'Bara Imambara',
+      wikiTitle: 'Bara_Imambara',
+      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/Bara_Imambara_Lucknow_02-2016_img3.jpg',
+      mapUrl: 'https://goo.gl/maps/joHpuVxJH5woSmBE7'
+    },
+    {
+      name: 'Chhota Imambara',
+      wikiTitle: 'Chhota_Imambara',
+      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/db/Chhota_Imambara_-_Side_view.jpg',
+      mapUrl: 'https://goo.gl/maps/56sdm459Gk4z4CzZ6'
+    },
+    {
+      name: 'Rumi Darwaza',
+      wikiTitle: 'Rumi_Darwaza',
+      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Rumi_Darwaza_Lucknow_03122013_02.jpg',
+      mapUrl: 'https://goo.gl/maps/k7qMihQiSqaywKQJ8'
+    },
+    {
+      name: 'Hussainabad Clock Tower',
+      wikiTitle: 'Hussainabad_Clock_Tower',
+      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/6/68/Hussainabad_Clock_Tower%2C_Lucknow.jpg',
+      mapUrl: 'https://goo.gl/maps/uTJ7Pp4nuREa3CXc9'
+    }
+  ];
+
+  async function fetchWikiExtract(title) {
+    const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+    try {
+      const response = await fetch(apiUrl);
+      if (!response.ok) throw new Error('Wiki API error');
+      const data = await response.json();
+      return data;
+    } catch (e) {
+      return null;
+    }
+  }
+
+  async function renderHavelis() {
+    const container = document.getElementById('havelis-grid');
+
+    for (const haveli of havelis) {
+      const card = document.createElement('article');
+      card.className = 'haveli-card';
+
+      const img = document.createElement('img');
+      img.className = 'haveli-image';
+      img.src = haveli.imageSrc;
+      img.alt = haveli.name;
+
+      const content = document.createElement('div');
+      content.className = 'haveli-content';
+
+      const title = document.createElement('h3');
+      title.className = 'haveli-title';
+      title.textContent = haveli.name;
+
+      const description = document.createElement('p');
+      description.className = 'haveli-description';
+      description.textContent = 'Loading information...';
+
+      const readMore = document.createElement('a');
+      readMore.className = 'haveli-link';
+      readMore.target = '_blank';
+      readMore.rel = 'noopener noreferrer';
+      readMore.textContent = 'Read more on Wikipedia';
+
+      const mapLink = document.createElement('a');
+      mapLink.className = 'map-link';
+      mapLink.target = '_blank';
+      mapLink.rel = 'noopener noreferrer';
+      mapLink.textContent = 'View on Map';
+      mapLink.href = haveli.mapUrl;
+
+      content.appendChild(title);
+      content.appendChild(description);
+      content.appendChild(readMore);
+      content.appendChild(mapLink);
+
+      card.appendChild(img);
+      card.appendChild(content);
+
+      container.appendChild(card);
+
+      const wikiData = await fetchWikiExtract(haveli.wikiTitle);
+
+      if (wikiData && wikiData.extract) {
+        description.textContent = wikiData.extract;
+        if (wikiData.content_urls?.desktop?.page) {
+          readMore.href = wikiData.content_urls.desktop.page;
+        } else {
+          readMore.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(haveli.wikiTitle)}`;
+        }
+      } else {
+        description.textContent = 'Information not available.';
+        readMore.style.display = 'none';
+      }
+    }
+  }
+
+  renderHavelis();
+</script>
+</body>
+</html>
