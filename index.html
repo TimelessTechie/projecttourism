@@ -1,290 +1,408 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Lucknow Havelis - Tourist Guide</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lucknow Havelis - Tourist Guide</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  :root {
-    --primary-color: #6a1b9a;
-    --secondary-color: #9c27b0;
-    --background-color: #f5f4fa;
-    --text-color: #333;
-    --card-bg: #ffffff;
-    --shadow-color: rgba(108, 0, 160, 0.15);
-  }
+    :root {
+      --primary-color: #6a1b9a;
+      --secondary-color: #9c27b0;
+      --background-color: #f5f4fa;
+      --text-color: #333;
+      --card-bg: #ffffff;
+      --shadow-color: rgba(108, 0, 160, 0.15);
+    }
 
-  * {
-    box-sizing: border-box;
-  }
+    * {
+      box-sizing: border-box;
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    line-height: 1.5;
-  }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      color: var(--text-color);
+      line-height: 1.5;
+      position: relative;
+      z-index: 0;
 
-  header {
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    color: white;
-    padding: 1.8rem 1rem;
-    text-align: center;
-    box-shadow: 0 4px 12px var(--shadow-color);
-  }
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
 
-  header h1 {
-    margin: 0;
-    font-weight: 600;
-    font-size: 2.4rem;
-    letter-spacing: 1px;
-  }
+      background-image: url('images/lucknow image.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+    }
 
-  main {
-    max-width: 1100px;
-    margin: 2.5rem auto;
-    padding: 0 1rem 4rem 1rem;
-  }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-  .intro {
-    text-align: center;
-    font-size: 1.15rem;
-    color: #555;
-    margin-bottom: 3rem;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-  }
+    .top-header {
+      background-color: #444;
+      padding: 1rem 0;
+      color: white;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
 
-  .havelis-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-    gap: 2rem;
-  }
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      flex-wrap: wrap;
+    }
 
-  .haveli-card {
-    background: var(--card-bg);
-    border-radius: 16px;
-    box-shadow: 0 8px 24px var(--shadow-color);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: gold;
+      font-family: 'Poppins', sans-serif;
+    }
 
-  .haveli-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(108,0,160,0.35);
-  }
+    .main-nav a {
+      margin: 0 0.75rem;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
 
-  .haveli-image {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    border-radius: 16px 16px 0 0;
-    box-shadow: inset 0 0 12px rgba(0,0,0,0.06);
-  }
+    .main-nav a:hover {
+      color: #ccc;
+    }
 
-  .haveli-content {
-    padding: 1rem 1.25rem 1.75rem 1.25rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
+    .tools {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
 
-  .haveli-title {
-    margin: 0;
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    font-weight: 600;
-  }
+    #language-selector,
+    #dark-toggle,
+    #search-bar {
+      padding: 0.4rem 0.6rem;
+      border: none;
+      border-radius: 5px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
 
-  .haveli-description {
-    margin-top: 0.6rem;
-    font-size: 0.95rem;
-    color: #444;
-    flex-grow: 1;
-    overflow-y: auto;
-    max-height: 120px;
-  }
+    #dark-toggle {
+      cursor: pointer;
+      background-color: white;
+      color: black;
+    }
 
-  .haveli-link {
-    margin-top: 1rem;
-    font-weight: 600;
-    color: var(--secondary-color);
-    text-decoration: none;
-    align-self: flex-start;
-    transition: color 0.3s ease;
-  }
+    #search-bar {
+      background-color: white;
+      color: black;
+    }
 
-  .haveli-link:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
-  }
+    main {
+      max-width: 1100px;
+      margin: 2.5rem auto;
+      padding: 0 1rem 4rem 1rem;
+      flex: 1;
+    }
 
-  .map-link {
-    margin-top: 0.35rem;
-    font-weight: 500;
-    font-size: 0.9rem;
-    color: #444;
-    text-decoration: none;
-    align-self: flex-start;
-    transition: color 0.25s ease;
-  }
+    .intro {
+      text-align: center;
+      font-size: 1.15rem;
+      color: #ddd;
+      margin-bottom: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  .map-link:hover {
-    color: var(--primary-color);
-    text-decoration: underline;
-  }
+    .havelis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 2rem;
+    }
 
-  footer {
-    text-align: center;
-    color: #666;
-    font-size: 0.9rem;
-    padding: 2rem 1rem;
-    border-top: 1px solid #ddd;
-    max-width: 1100px;
-    margin: 0 auto 2rem auto;
-  }
+    .haveli-card {
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px var(--shadow-color);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
-  /* Scrollbar for description if needed */
-  .haveli-description::-webkit-scrollbar {
-    width: 6px;
-  }
-  .haveli-description::-webkit-scrollbar-track {
-    background: #f5f5f5;
-    border-radius: 3px;
-  }
-  .haveli-description::-webkit-scrollbar-thumb {
-    background: #bbb;
-    border-radius: 3px;
-  }
-</style>
+    .haveli-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(108,0,160,0.35);
+    }
+
+    .haveli-image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 16px 16px 0 0;
+      box-shadow: inset 0 0 12px rgba(0,0,0,0.06);
+    }
+
+    .haveli-content {
+      padding: 1rem 1.25rem 1.75rem 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .haveli-title {
+      margin: 0;
+      font-size: 1.4rem;
+      color: var(--primary-color);
+      font-weight: 600;
+    }
+
+    .haveli-description {
+      margin-top: 0.6rem;
+      font-size: 0.95rem;
+      color: #444;
+      flex-grow: 1;
+      overflow-y: auto;
+      max-height: 120px;
+    }
+
+    .haveli-link {
+      margin-top: 1rem;
+      font-weight: 600;
+      color: var(--secondary-color);
+      text-decoration: none;
+      align-self: flex-start;
+      transition: color 0.3s ease;
+    }
+
+    .haveli-link:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    .map-link {
+      margin-top: 0.35rem;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: #444;
+      text-decoration: none;
+      align-self: flex-start;
+      transition: color 0.25s ease;
+    }
+
+    .map-link:hover {
+      color: var(--primary-color);
+      text-decoration: underline;
+    }
+
+    footer {
+      width: 100%;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 2rem 1rem;
+      border-top: 1px solid #ccc;
+      background-color: rgba(0, 0, 0, 0.6);
+      color: #f0f0f0;
+      backdrop-filter: blur(6px);
+    }
+
+    footer a {
+      color: #ffeb3b;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    .dark-mode {
+      --background-color: #121212;
+      --text-color: #f5f5f5;
+      --card-bg: #1e1e1e;
+      --shadow-color: rgba(255, 255, 255, 0.08);
+    }
+  </style>
 </head>
 <body>
-<header>
-  <h1>Heritage Havens Lucknow</h1>
-</header>
-<main>
-  <p class="intro">
-    Discover the magnificent havelis and heritage landmarks of Lucknow. Explore detailed information and beautiful images for each famous haveli to plan your historic trip with ease.
-  </p>
+  <header class="top-header">
+    <div class="nav-container">
+      <div class="logo">Heritage Havens Lucknow</div>
+      <nav class="main-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#havelis">Havelis</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="tools">
+        <select id="language-selector">
+          <option value="en" selected>English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ur">اردو</option>
+        </select>
+        <button id="dark-toggle">🌙</button>
+        <input type="text" id="search-bar" placeholder="Search Havelis..." />
+      </div>
+    </div>
+  </header>
 
-  <section class="havelis-grid" id="havelis-grid">
-    <!-- Haveli cards will be inserted here dynamically -->
-  </section>
-</main>
-<footer>
-  &copy; 2024 Lucknow Tourist Guide | Information sourced from Wikipedia and external image sources
-</footer>
+  <main>
+    <p class="intro">
+      Discover the magnificent havelis and heritage landmarks of Lucknow. Explore detailed information and beautiful images for each famous haveli to plan your historic trip with ease.
+    </p>
 
-<script>
-  // Haveli data list: name, Wikipedia title, image URL, Google Maps link
-  const havelis = [
-    {
-      name: 'Bara Imambara',
-      wikiTitle: 'Bara_Imambara',
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/e/e2/Bara_Imambara_Lucknow_02-2016_img3.jpg',
-      mapUrl: 'https://goo.gl/maps/joHpuVxJH5woSmBE7'
-    },
-    {
-      name: 'Chhota Imambara',
-      wikiTitle: 'Chhota_Imambara',
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/db/Chhota_Imambara_-_Side_view.jpg',
-      mapUrl: 'https://goo.gl/maps/56sdm459Gk4z4CzZ6'
-    },
-    {
-      name: 'Rumi Darwaza',
-      wikiTitle: 'Rumi_Darwaza',
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/d/d4/Rumi_Darwaza_Lucknow_03122013_02.jpg',
-      mapUrl: 'https://goo.gl/maps/k7qMihQiSqaywKQJ8'
-    },
-    {
-      name: 'Hussainabad Clock Tower',
-      wikiTitle: 'Hussainabad_Clock_Tower',
-      imageSrc: 'https://upload.wikimedia.org/wikipedia/commons/6/68/Hussainabad_Clock_Tower%2C_Lucknow.jpg',
-      mapUrl: 'https://goo.gl/maps/uTJ7Pp4nuREa3CXc9'
-    }
-  ];
+    <section class="havelis-grid" id="havelis-grid">
+      <!-- Haveli cards will be inserted here dynamically -->
+    </section>
+  </main>
 
-  async function fetchWikiExtract(title) {
-    const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
-    try {
-      const response = await fetch(apiUrl);
-      if (!response.ok) throw new Error('Wiki API error');
-      const data = await response.json();
-      return data;
-    } catch (e) {
-      return null;
-    }
-  }
+  <footer>
+    <div style="max-width: 900px; margin: 0 auto; line-height: 1.6;">
+      <p>&copy; 2024 <strong>Lucknow Tourist Guide</strong> | Info sourced from Wikipedia and external images</p>
+      <p><strong>🔗 Quick Links:</strong><br />
+        <a href="https://www.uttarpradeshtourism.gov.in/" target="_blank">🏛️ UP Tourism</a> |
+        <a href="https://www.irctc.co.in/" target="_blank">🚆 IRCTC</a> |
+        <a href="https://www.ixigo.com/lucknow-tourism-indiapedia-1122142" target="_blank">🧭 Travel Guide</a> |
+        <a href="https://www.google.com/maps?q=lucknow+havelis" target="_blank">🗺️ Map View</a>
+      </p>
+      <p><strong>📞 Emergency:</strong> <a href="tel:1800111363">1800-11-1363</a> | 🌐 <a href="https://www.incredibleindia.org" target="_blank">Incredible India</a></p>
+    </div>
+  </footer>
 
-  async function renderHavelis() {
-    const container = document.getElementById('havelis-grid');
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkToggle = document.getElementById('dark-toggle');
 
-    for (const haveli of havelis) {
-      const card = document.createElement('article');
-      card.className = 'haveli-card';
+      if (localStorage.getItem('theme') === 'dark') {
+        document.documentElement.classList.add('dark-mode');
+        darkToggle.textContent = '☀️';
+      }
 
-      const img = document.createElement('img');
-      img.className = 'haveli-image';
-      img.src = haveli.imageSrc;
-      img.alt = haveli.name;
+      darkToggle.addEventListener('click', () => {
+        const root = document.documentElement;
+        const isDark = root.classList.toggle('dark-mode');
+        darkToggle.textContent = isDark ? '☀️' : '🌙';
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+    });
 
-      const content = document.createElement('div');
-      content.className = 'haveli-content';
+    const havelis = [
+      {
+        name: 'Bara Imambara',
+        wikiTitle: 'Bara_Imambara',
+        imageSrc: 'images/bara-imambara.jpg',
+        mapUrl: 'https://goo.gl/maps/joHpuVxJH5woSmBE7'
+      },
+      {
+        name: 'Chhota Imambara',
+        wikiTitle: 'Chhota_Imambara',
+        imageSrc: 'images/chhota-imambara.jpg',
+        mapUrl: 'https://goo.gl/maps/56sdm459Gk4z4CzZ6'
+      },
+      {
+        name: 'Rumi Darwaza',
+        wikiTitle: 'Rumi_Darwaza',
+        imageSrc: 'images/rumi-darwaza.jpg',
+        mapUrl: 'https://goo.gl/maps/k7qMihQiSqaywKQJ8'
+      },
+      {
+        name: 'Hussainabad Clock Tower',
+        wikiTitle: 'Husainabad_Clock_Tower',
+        imageSrc: 'images/clock-tower.jpg',
+        mapUrl: 'https://goo.gl/maps/uTJ7Pp4nuREa3CXc9'
+      }
+    ];
 
-      const title = document.createElement('h3');
-      title.className = 'haveli-title';
-      title.textContent = haveli.name;
-
-      const description = document.createElement('p');
-      description.className = 'haveli-description';
-      description.textContent = 'Loading information...';
-
-      const readMore = document.createElement('a');
-      readMore.className = 'haveli-link';
-      readMore.target = '_blank';
-      readMore.rel = 'noopener noreferrer';
-      readMore.textContent = 'Read more on Wikipedia';
-
-      const mapLink = document.createElement('a');
-      mapLink.className = 'map-link';
-      mapLink.target = '_blank';
-      mapLink.rel = 'noopener noreferrer';
-      mapLink.textContent = 'View on Map';
-      mapLink.href = haveli.mapUrl;
-
-      content.appendChild(title);
-      content.appendChild(description);
-      content.appendChild(readMore);
-      content.appendChild(mapLink);
-
-      card.appendChild(img);
-      card.appendChild(content);
-
-      container.appendChild(card);
-
-      const wikiData = await fetchWikiExtract(haveli.wikiTitle);
-
-      if (wikiData && wikiData.extract) {
-        description.textContent = wikiData.extract;
-        if (wikiData.content_urls?.desktop?.page) {
-          readMore.href = wikiData.content_urls.desktop.page;
-        } else {
-          readMore.href = `https://en.wikipedia.org/wiki/${encodeURIComponent(haveli.wikiTitle)}`;
-        }
-      } else {
-        description.textContent = 'Information not available.';
-        readMore.style.display = 'none';
+    async function fetchWikiExtract(title) {
+      const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(title)}`;
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) throw new Error('Wiki API error');
+        return await response.json();
+      } catch (e) {
+        return null;
       }
     }
-  }
 
-  renderHavelis();
-</script>
+    async function renderHavelis() {
+      const container = document.getElementById('havelis-grid');
+
+      for (const haveli of havelis) {
+        const card = document.createElement('article');
+        card.className = 'haveli-card';
+
+        const img = document.createElement('img');
+        img.className = 'haveli-image';
+        img.src = haveli.imageSrc;
+        img.alt = haveli.name;
+
+        const content = document.createElement('div');
+        content.className = 'haveli-content';
+
+        const title = document.createElement('h3');
+        title.className = 'haveli-title';
+        title.textContent = haveli.name;
+
+        const description = document.createElement('p');
+        description.className = 'haveli-description';
+        description.textContent = 'Loading information...';
+
+        const readMore = document.createElement('a');
+        readMore.className = 'haveli-link';
+        readMore.target = '_blank';
+        readMore.rel = 'noopener noreferrer';
+        readMore.textContent = 'Read more on Wikipedia';
+
+        const mapLink = document.createElement('a');
+        mapLink.className = 'map-link';
+        mapLink.target = '_blank';
+        mapLink.rel = 'noopener noreferrer';
+        mapLink.textContent = 'View on Map';
+        mapLink.href = haveli.mapUrl;
+
+        content.appendChild(title);
+        content.appendChild(description);
+        content.appendChild(readMore);
+        content.appendChild(mapLink);
+
+        card.appendChild(img);
+        card.appendChild(content);
+
+        container.appendChild(card);
+
+        const wikiData = await fetchWikiExtract(haveli.wikiTitle);
+
+        if (wikiData && wikiData.extract) {
+          description.textContent = wikiData.extract;
+          readMore.href = wikiData.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(haveli.wikiTitle)}`;
+        } else {
+          description.textContent = 'Information not available.';
+          readMore.style.display = 'none';
+        }
+      }
+    }
+
+    renderHavelis();
+  </script>
 </body>
 </html>
